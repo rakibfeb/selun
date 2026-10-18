@@ -11,14 +11,14 @@ const QueueSchema = new mongoose.Schema(
     walkInName: { type: String, trim: true },
     phoneNumber: { type: String, trim: true }, // optional for walk-ins
 
-    // services: [
-    //   {
-    //     serviceId: { type: mongoose.Schema.Types.ObjectId, ref: "Service" },
-    //     serviceName: { type: String, required: true },
-    //     durationMin: { type: Number, required: true },
-    //     servicePrice: { type: Number, required: true },
-    //   },
-    // ],
+    services: [
+      {
+        serviceId: { type: mongoose.Schema.Types.ObjectId, ref: "Service" },
+        serviceName: { type: String, required: true },
+        durationMin: { type: Number, required: true },
+        servicePrice: { type: Number, required: true },
+      },
+    ],
 
     queueStatus: {
       type: String,
