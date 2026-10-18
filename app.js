@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
+app.get("/health", (req, res) => {
   res.send("Queue Management API is running.");
 });
 
