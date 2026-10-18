@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const { connectDB } = require("./config/database");
 const Customer = require("./models/Customer");
-const customerController = require("./controllers/customerControllers")
+const {register} = require("./controllers/customerControllers")
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ app.get("/health", (req, res) => {
   res.send("Queue Management API is running.");
 });
 
-app.post("/customer", customerController);
+app.post("/register", register);
 
 const PORT = process.env.PORT || 5000;
 

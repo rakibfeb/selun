@@ -1,7 +1,7 @@
 const Customer = require('../models/Customer')
 
 
-const customerController = async (req, res) => {
+const register = async (req, res) => {
   const { customerName, phoneNumber, email, password } = req.body;
   try {
     const isExists = await Customer.findOne({ phoneNumber });
@@ -20,4 +20,4 @@ const customerController = async (req, res) => {
 }
 
 
-module.exports = customerController
+module.exports = {register}
