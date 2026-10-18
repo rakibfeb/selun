@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const barbarSchema = new mongoose.Schema({
-    barbar_name:{
+    barbarName:{
         type:String,
         required:true
     },
@@ -15,7 +15,7 @@ const barbarSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Service"
     }],
-    barber_status:{
+    barberStatus:{
         type:String,
         enum:["active","inactive"],
         default:"active"

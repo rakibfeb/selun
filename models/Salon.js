@@ -1,27 +1,27 @@
 const mongoose = require('mongoose');
 
 const salonSchema = new mongoose.Schema({
-    salon_name:{
+    salonName:{
         type:String,
         required:true
     },
-    salon_address:{
+    salonAddress:{
         type:String,
         required:true
     },
-    salon_phoneNumber:{
+    salonPhoneNumber:{
         type:String,
         required:true
     },
-    salon_email:{
+    salonEmail:{
         type:String,
         required:true
     },
-    salon_password:{
+    salonPassword:{
         type:String,
         required:true
     },
-    salon_status:{
+    salonStatus:{
         type:String,
         enum:["active","inactive"],
         default:"active"
