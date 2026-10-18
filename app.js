@@ -7,8 +7,9 @@ const Customer = require("./models/Customer");
 const {register} = require("./controllers/customerControllers")
 const {salonRegister} = require("./controllers/salonControllers")
 const {serviceRegister} = require ("./controllers/serviceControllers")
+const {addQueue,removeQueue} = require("./controllers/queueControllers")
 
-dotenv.config();
+dotenv.config(); 
 
 const app = express();
 app.use(bodyParser.json());
@@ -20,6 +21,7 @@ app.get("/health", (req, res) => {
 app.post("/register", register);
 app.post("/salonRegister", salonRegister)
 app.post("/serviceRegister", serviceRegister)
+app.post("/queue",addQueue)
 
 const PORT = process.env.PORT || 5000;
 

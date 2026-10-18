@@ -11,14 +11,14 @@ const QueueSchema = new mongoose.Schema(
     walkInName: { type: String, trim: true },
     phoneNumber: { type: String, trim: true }, // optional for walk-ins
 
-    services: [
-      {
-        serviceId: { type: mongoose.Schema.Types.ObjectId, ref: "Service" },
-        name: { type: String, required: true },
-        durationMin: { type: Number, required: true },
-        price: { type: Number, required: true },
-      },
-    ],
+    // services: [
+    //   {
+    //     serviceId: { type: mongoose.Schema.Types.ObjectId, ref: "Service" },
+    //     serviceName: { type: String, required: true },
+    //     durationMin: { type: Number, required: true },
+    //     servicePrice: { type: Number, required: true },
+    //   },
+    // ],
 
     queueStatus: {
       type: String,
@@ -26,7 +26,7 @@ const QueueSchema = new mongoose.Schema(
       default: "waiting",
     },
 
-    sortKey: { type: Number, required: true }, // from the salon's atomic counter
+    sortKey: { type: Number, required: true}, // from the salon's atomatic count
     barberId: { type: mongoose.Schema.Types.ObjectId, ref: "Barber" },
 
     joinedAt: { type: Date, default: Date.now },
@@ -37,7 +37,10 @@ const QueueSchema = new mongoose.Schema(
 );
 
 // fast ordered queue reads per salon
-QueueSchema.index({ salonId: 1, queueStatus: 1, sortKey: 1 });
+// QueueSchema.index({ salonId: 1, queueStatus: 1, sortKey: 1 });
+
+// sortKey must be unique within a salon (not across salons)
+QueueSchema.index({ salonId: 1, sortKey: 1 }, { unique: true });
 
 // one active spot per customer, across all salons
 QueueSchema.index(
@@ -45,6 +48,7 @@ QueueSchema.index(
   {
     unique: true,
     partialFilterExpression: {
+      customerId: { $exists: true },
       queueStatus: { $in: ["waiting", "in-progress"] },
     },
   },
