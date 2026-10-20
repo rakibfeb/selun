@@ -26,6 +26,16 @@ const salonSchema = new mongoose.Schema({
         enum:["active","inactive"],
         default:"active"
     },
+    description:{
+        type: String
+    },
+    isOpen:{
+        type: Boolean
+
+    },
+    seats:{
+        type: Number
+    }
 
 })
 
