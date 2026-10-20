@@ -5,13 +5,19 @@ const dotenv = require("dotenv");
 const { connectDB } = require("./config/database");
 const Customer = require("./models/Customer");
 const {register} = require("./controllers/customerControllers")
-const {salonRegister} = require("./controllers/salonControllers")
+const {salonRegister,getSalonList} = require("./controllers/salonControllers")
 const {serviceRegister} = require ("./controllers/serviceControllers")
-const {addQueue,removeQueue} = require("./controllers/queueControllers")
+const {addQueue,removeQueue,getSalonQueue} = require("./controllers/queueControllers")
+const cors = require("cors");
+
+
 
 dotenv.config(); 
 
+
 const app = express();
+app.use(cors({ origin: "http://localhost:5173" }));
+app.use(express.json());
 app.use(bodyParser.json());
 
 app.get("/health", (req, res) => {
@@ -20,8 +26,10 @@ app.get("/health", (req, res) => {
 
 app.post("/register", register);
 app.post("/salonRegister", salonRegister)
+app.get("/salons",getSalonList)
 app.post("/serviceRegister", serviceRegister)
 app.post("/queue",addQueue)
+app.get("/queue/:salonId",getSalonQueue)
 
 const PORT = process.env.PORT || 5000;
 

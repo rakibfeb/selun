@@ -20,4 +20,15 @@ const salonRegister = async (req,res)=>{
 
 }
 
-module.exports = {salonRegister}
+const getSalonList = async (req,res)=>{
+    try{
+        const salonList = await Salon.find();
+        res.json(salonList)
+    }
+    catch(err){
+        res.json(err.message)
+    }
+
+}
+
+module.exports = {salonRegister,getSalonList}
