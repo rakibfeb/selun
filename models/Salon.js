@@ -35,6 +35,10 @@ const salonSchema = new mongoose.Schema({
     },
     seats:{
         type: Number
+    },
+    role:{
+        type: String,
+        required:true
     }
 
 })

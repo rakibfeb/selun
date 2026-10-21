@@ -118,4 +118,36 @@ const getSalonQueue = async (req,res)=>{
     
 
 }
-module.exports = { addQueue, removeQueue,getSalonQueue};
+
+const cancelMyBooking = (req,res)=>{
+    res.send("cancelMyBooking ")
+}
+const skipMyTurn = (req,res)=>{
+    res.send(" skipMyTurn ")
+}
+const getMyBooking = (req,res)=>{
+    res.send("getMyBooking ")
+}
+
+const getOwnerQueue = (req, res) => {
+  res.send("Owner queue data");
+};
+
+const addWalkIn = (req, res) => {
+  res.send("Walk-in added to queue");
+};
+
+const startEntry = (req, res) => {
+  res.send("Queue entry started");
+};
+
+const completeEntry = (req, res) => {
+  res.send("Queue entry completed");
+};
+
+const removeEntry = (req, res) => {
+  res.send("Queue entry removed");
+};
+
+
+module.exports = {getOwnerQueue, addWalkIn, startEntry, completeEntry, removeEntry, addQueue, removeQueue,getSalonQueue,getMyBooking,skipMyTurn,cancelMyBooking};

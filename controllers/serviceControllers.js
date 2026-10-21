@@ -41,4 +41,25 @@ if (err.code === 11000) {
     return res.status(500).json({ message: "Something went wrong while registering the service" });
   }  }
 
-module.exports = { serviceRegister };
+  const listSalonServices = (req,res)=>{
+    res.send("listSalonServices ")
+}
+
+const listOwnerServices = (req, res) => {
+  res.send("List of owner services");
+};
+
+const createService = (req, res) => {
+  res.send("Service created");
+};
+
+const updateService = (req, res) => {
+  res.send("Service updated");
+};
+
+const deleteService = (req, res) => {
+  res.send("Service deleted");
+};
+
+module.exports = { serviceRegister , listSalonServices,listOwnerServices, createService, updateService, deleteService };
+
